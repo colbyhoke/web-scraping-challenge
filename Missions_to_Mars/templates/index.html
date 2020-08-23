@@ -6,10 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Mission to Mars web application</title>
+  
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
-<body>
+<body class="body"">
   <div class="container">
 
     <div class="jumbotron text-center">
@@ -17,12 +19,60 @@
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape that sweet Mars data</a></p>
     </div>
 
-      {{ mars_data.news_title }} <br><br>
-      {{ mars_data.news_p }} <br><br>
-      <a href={{ mars_data.featured_image_url }}><img src={{ mars_data.featured_image_url }} style="width: 50%;"></a> <br><br>
+    <div class="row">
+      <div class="col-md-12">  
+        <h2>Latest Mars news:</h2>
+        <h3>{{ mars_data.news_title }}</h4>
+        <p>{{ mars_data.news_p }}</p>
+        <hr>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        <h2>Featured Mars Image</h2>
+        <a href={{ mars_data.featured_image_url }}><img src={{ mars_data.featured_image_url }} style="width: 100%;" alt="mars image"></a>
+      </div>
       
-      {{ mars_data.mars_html_table }} <br>
+      <div class="col-md-4">
+        <h3>Mars facts</h3>
+        {% autoescape false %}
+          {{ mars_data.mars_html_table}}
+        {% endautoescape %}  
+      </div>
+    </div>
+    <br><br>  
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="center">Mars Hemispheres</h2>
+        <hr>
+      </div>  
+    </div>
+      
+    <div class="card-deck">
+      {% for img in mars_data.hemisphere_image_urls[0:2] %}
+      <div class="card">
+        <img class="card-img-top" src="{{ img['img_url'] }}" alt="Card image cap">
+        <div class="card-block">
+          <h4 class="card-title">{{ img['title'] }}</h4>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <br>
+    <div class="card-deck">
+      {% for img in mars_data.hemisphere_image_urls[2:4] %}
+      <div class="card">
+        <img class="card-img-top" src="{{ img['img_url'] }}" alt="Card image cap">
+        <div class="card-block">
+          <h4 class="card-title">{{ img['title'] }}</h4>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    
+    <br>
 
+    </div>
   </div>
 </body>
 

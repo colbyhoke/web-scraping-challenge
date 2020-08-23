@@ -1,0 +1,15 @@
+.body {
+    background-color: lightslategray;
+}
+
+h2 {
+    font-size: 20pt;
+}
+
+tr:nth-child(even) {
+    background-color: gray;
+}
+
+.center {
+    text-align: center;
+}
