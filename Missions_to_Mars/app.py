@@ -25,7 +25,7 @@ def home():
 
 @app.route("/scrape")
 def scrape():
- # Run the scrape function
+    # Run the scrape function
     mars_data_scrape = scrape_mars.scraper()
 
     # Update the Mongo database using update and upsert=True

@@ -1,24 +1,35 @@
+<!--
+Colby Alexander Hoke
+UNC Data Analytics Bootcamp
+August 2020
+-->
 <!DOCTYPE html>
 <html lang="en">
 
+<!-- Don't lose your head (because it's here) -->
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Mission to Mars web application</title>
   
+  <!-- Bootstrap and custom CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
 </head>
 
+<!-- Here be a body -->
 <body class="body"">
   <div class="container">
 
+    <!-- Jumbotron with that big, beautiful button -->
     <div class="jumbotron text-center">
       <h1>Mission to Mars</h1>
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape that sweet Mars data</a></p>
     </div>
 
+    <!-- Mars news info from scraper -->
     <div class="row">
       <div class="col-md-12">  
         <h2>Latest Mars news:</h2>
@@ -27,42 +38,40 @@
         <hr>
       </div>
     </div>
+
+    <!-- Row to hold Mars image and Mars facts -->
     <div class="row">
+      <!-- Mars image -->
       <div class="col-md-8">
         <h2>Featured Mars Image</h2>
         <a href={{ mars_data.featured_image_url }}><img src={{ mars_data.featured_image_url }} style="width: 100%;" alt="mars image"></a>
       </div>
       
+      <!-- Mars facts tables -->
       <div class="col-md-4">
-        <h3>Mars facts</h3>
+        <h2>Mars facts</h2>
         {% autoescape false %}
           {{ mars_data.mars_html_table}}
         {% endautoescape %}  
       </div>
     </div>
-    <br><br>  
+    
+    <br><br> 
+    
+    <!-- Mars hemisphere images -->
     <div class="row">
       <div class="col-md-12">
+        <hr>
         <h2 class="center">Mars Hemispheres</h2>
         <hr>
       </div>  
     </div>
-      
+    
+    <!-- Card deck to hold first two hemisphere images, in cards, side-by-side -->
     <div class="card-deck">
       {% for img in mars_data.hemisphere_image_urls[0:2] %}
       <div class="card">
-        <img class="card-img-top" src="{{ img['img_url'] }}" alt="Card image cap">
-        <div class="card-block">
-          <h4 class="card-title">{{ img['title'] }}</h4>
-        </div>
-      </div>
-      {% endfor %}
-    </div>
-    <br>
-    <div class="card-deck">
-      {% for img in mars_data.hemisphere_image_urls[2:4] %}
-      <div class="card">
-        <img class="card-img-top" src="{{ img['img_url'] }}" alt="Card image cap">
+        <a href="{{ img['img_url'] }}"><img class="card-img-top" src="{{ img['img_url'] }}" alt="{{ img['title'] }}"></a>
         <div class="card-block">
           <h4 class="card-title">{{ img['title'] }}</h4>
         </div>
@@ -72,8 +81,31 @@
     
     <br>
 
+    <!-- Card deck to hold seconds two hemisphere images, in cards, side-by-side -->
+    <div class="card-deck">
+      {% for img in mars_data.hemisphere_image_urls[2:4] %}
+      <div class="card">
+        <a href="{{ img['img_url'] }}"><img class="card-img-top" src="{{ img['img_url'] }}" alt="{{ img['title'] }}"></a>
+        <div class="card-block">
+          <h4 class="card-title">{{ img['title'] }}</h4>
+        </div>
+      </div>
+      {% endfor %}
     </div>
   </div>
 </body>
 
+<br>
+
+<!-- Yarr, a footer be here -->
+<footer id="sticky-footer" class="py-4 bg-dark text-white-50">
+  <div class="container text-center">
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+      <img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+    </a>
+    <br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+  </div>
+</footer>
+
+<!-- Bye! -->
 </html>

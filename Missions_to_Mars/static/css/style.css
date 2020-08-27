@@ -1,15 +1,34 @@
-.body {
-    background-color: lightslategray;
-}
-
+/* Global styles */
 h2 {
     font-size: 20pt;
+    color: black;
 }
 
+h3 {
+    font-size: 15pt;
+    color: black;
+}
+
+/* Make the table pop a little */
+table {
+    border: black 2pt solid;
+}
+
+/* Table alternating row colors */
 tr:nth-child(even) {
-    background-color: gray;
+    background-color: lightgray;
 }
 
+/* Class styles */
+.body {
+    background-color: lightsteelblue;
+}
+
+.jumbotron {
+    background-color: silver;
+}
+
+/* Center text */ 
 .center {
     text-align: center;
 }
