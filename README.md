@@ -1,6 +1,5 @@
 # Web scraping challenge
-UNC Data Analytics Bootcamp
-August 2020
+UNC Data Analytics Bootcamp, August 2020
 
 This repository scrapes several websites, realted to information about Mars, and then combines all of that into a new broswer app.
 
